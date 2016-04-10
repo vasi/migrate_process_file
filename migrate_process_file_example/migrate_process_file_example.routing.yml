@@ -1,0 +1,7 @@
+migrate_process_file_example.import:
+  path: '/shows'
+  defaults:
+    _title: 'Import TV shows'
+    _form: '\Drupal\migrate_process_file_example\Form\ImportForm'
+  requirements:
+    _permission: 'access content'

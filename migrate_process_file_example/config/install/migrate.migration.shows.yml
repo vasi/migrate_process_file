@@ -1,4 +1,3 @@
-uuid: cd76ebc3-972a-4949-8d97-08c4e43058c8
 langcode: en
 status: true
 dependencies:
@@ -10,7 +9,7 @@ migration_tags: {  }
 label: 'TV shows'
 source:
   plugin: json_source
-  path: 'http://api.tvmaze.com/search/shows?q=girls'
+  path: 'http://api.tvmaze.com/search/shows?q='
   identifier: id
   identifierDepth: 1
   headers: {  }
@@ -24,8 +23,10 @@ process:
   body/0/format: constants/format
   type: constants/type
   field_image:
-    source: image/original
-    plugin: file_import
+    - source: image/original
+      plugin: skip_on_empty
+      method: process
+    - plugin: file_import
 destination:
   plugin: 'entity:node'
 template: null
