@@ -48,9 +48,32 @@ class ImportForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Get our term.
-    $term = $form_state->getValue('term');
+    // Redirect to /node when we're done.
+    $form_state->setRedirect('view.frontpage.page_1');
 
+    // Run a batch.
+    $term = $form_state->getValue('term');
+    batch_set([
+      'title' => $this->t('Importing TV shows'),
+      'progress_message' => $this->t('Importing TV shows'),
+      'operations' => [
+        [
+          [get_class($this), 'importShows'],
+          [$term],
+        ],
+      ],
+    ]);
+  }
+
+  /**
+   * Import shows with the given term.
+   *
+   * @param string $term
+   *   A search term for TV shows.
+   * @param $context
+   *   Batch context.
+   */
+  public static function importShows($term, &$context) {
     // Setup the migration to use our term.
     $migration = Migration::load('shows');
     $source = $migration->get('source');
@@ -61,9 +84,6 @@ class ImportForm extends FormBase {
     $log = new MigrateMessage();
     $executable = new MigrateExecutable($migration, $log);
     $executable->import();
-
-    // Redirect to /node.
-    $form_state->setRedirect('view.frontpage.page_1');
   }
 
 }
