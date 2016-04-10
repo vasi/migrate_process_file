@@ -1,5 +1,5 @@
 type: module
-name: migrate_process_file_example
+name: Migrate Process File example
 description: "Import TV show articles"
 package: Migration
 core: '8.x'
