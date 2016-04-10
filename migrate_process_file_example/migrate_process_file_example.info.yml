@@ -4,4 +4,6 @@ description: "Import TV show articles"
 package: Migration
 core: '8.x'
 dependencies:
+  - node
+  - migrate_source_json
   - migrate_process_file

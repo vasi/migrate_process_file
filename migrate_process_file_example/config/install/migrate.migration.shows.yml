@@ -4,6 +4,7 @@ dependencies:
   module:
     - node
     - migrate_source_json
+    - migrate_process_file
 id: shows
 migration_tags: {  }
 label: 'TV shows'
