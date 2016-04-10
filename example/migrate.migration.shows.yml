@@ -1,0 +1,33 @@
+uuid: cd76ebc3-972a-4949-8d97-08c4e43058c8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - migrate_source_json
+id: shows
+migration_tags: {  }
+label: 'TV shows'
+source:
+  plugin: json_source
+  path: 'http://api.tvmaze.com/search/shows?q=girls'
+  identifier: id
+  identifierDepth: 1
+  headers: {  }
+  fields: {  }
+  constants:
+    type: article
+    format: restricted_html
+process:
+  title: name
+  body/0/value: summary
+  body/0/format: constants/format
+  type: constants/type
+  field_image:
+    source: image/original
+    plugin: file_import
+destination:
+  plugin: 'entity:node'
+template: null
+migration_dependencies: {  }
+migration_group: null

@@ -1,0 +1,7 @@
+type: module
+name: migrate_process_file
+description: "Import files as part of a migration"
+package: Migration
+core: '8.x'
+dependencies:
+  - migrate
