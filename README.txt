@@ -30,3 +30,5 @@ The following abilities would be useful, but are not built-in:
 * An option for the new file's destination
 * Rollback of imported files
 * Dependency injection and unit tests
+
+Also, none of this is tested at all in Drupal 8.1.
